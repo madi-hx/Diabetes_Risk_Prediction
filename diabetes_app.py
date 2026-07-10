@@ -1,83 +1,232 @@
-
 import streamlit as st
 import pickle
 import numpy as np
 
-# Load saved files
-with open("diabetes_model.pkl", "rb") as f:
+# ---------------------------------------------------
+# Page Configuration
+# ---------------------------------------------------
+
+st.set_page_config(
+    page_title="Diabetes Risk Prediction",
+    page_icon="🩺",
+    layout="wide"
+)
+
+# ---------------------------------------------------
+# Custom CSS
+# ---------------------------------------------------
+
+st.markdown("""
+<style>
+
+.main{
+    background-color:#f4f8fb;
+}
+
+h1{
+    color:#1565C0;
+    text-align:center;
+}
+
+h3{
+    color:#37474F;
+}
+
+div.stButton > button{
+    width:100%;
+    background:linear-gradient(90deg,#1976D2,#42A5F5);
+    color:white;
+    border-radius:12px;
+    height:55px;
+    font-size:20px;
+    border:none;
+    font-weight:bold;
+}
+
+div.stButton > button:hover{
+    background:linear-gradient(90deg,#1565C0,#1E88E5);
+}
+
+.block-container{
+    padding-top:2rem;
+}
+
+</style>
+""", unsafe_allow_html=True)
+
+# ---------------------------------------------------
+# Load Model
+# ---------------------------------------------------
+
+with open("diabetes_model.pkl","rb") as f:
     model = pickle.load(f)
 
-with open("scaler.pkl", "rb") as f:
+with open("scaler.pkl","rb") as f:
     scaler = pickle.load(f)
 
-with open("target_encoder.pkl", "rb") as f:
+with open("target_encoder.pkl","rb") as f:
     target_encoder = pickle.load(f)
 
-st.set_page_config(page_title="Diabetes Risk Prediction")
+# ---------------------------------------------------
+# Sidebar
+# ---------------------------------------------------
 
-st.title("🩺 Diabetes Risk Prediction System")
+st.sidebar.title("🩺 Diabetes AI")
 
-st.write("Enter the patient's health details below.")
+st.sidebar.markdown("---")
 
-# User Inputs
+st.sidebar.write("""
+### About
 
-age = st.number_input("Age", min_value=1, max_value=120, value=30)
+This application predicts the **Diabetes Risk Category**
+using Machine Learning.
 
-gender = st.selectbox("Gender", ["Female", "Male"])
+✔ Fast Prediction
 
-bmi = st.number_input("BMI", value=25.0)
+✔ Easy to Use
 
-blood_pressure = st.number_input("Blood Pressure", value=120)
+✔ AI Powered
+""")
 
-fasting_glucose = st.number_input("Fasting Glucose Level", value=100)
+st.sidebar.markdown("---")
 
-insulin = st.number_input("Insulin Level", value=15.0)
+st.sidebar.success("Model : Logistic Regression")
 
-hba1c = st.number_input("HbA1c Level", value=5.5)
+st.sidebar.markdown("---")
 
-cholesterol = st.number_input("Cholesterol Level", value=180)
+st.sidebar.info("""
+Developer
 
-triglycerides = st.number_input("Triglycerides Level", value=150)
+**Madiha Khan**
 
-activity = st.selectbox(
-    "Physical Activity Level",
-    ["Low", "Medium", "High"]
+B.Tech AI & ML
+
+SRMCEM
+""")
+
+# ---------------------------------------------------
+# Header
+# ---------------------------------------------------
+
+st.title("🩺 Diabetes Risk Prediction")
+
+st.markdown(
+"""
+### AI Powered Healthcare Assistant
+
+Fill in the patient's health information below to predict the diabetes risk category.
+"""
 )
 
-calories = st.number_input("Daily Calorie Intake", value=2000)
+st.markdown("---")
 
-sugar = st.number_input("Sugar Intake (grams/day)", value=50.0)
+# ---------------------------------------------------
+# Input Fields
+# ---------------------------------------------------
 
-sleep = st.number_input("Sleep Hours", value=7.0)
+col1, col2 = st.columns(2)
 
-stress = st.slider("Stress Level", 1, 10, 5)
+with col1:
 
-family = st.selectbox(
-    "Family History of Diabetes",
-    ["No", "Yes"]
-)
+    age = st.number_input("👤 Age",1,120,30)
 
-waist = st.number_input("Waist Circumference (cm)", value=90.0)
+    bmi = st.number_input("⚖ BMI",value=25.0)
 
-# Convert categorical values
+    fasting_glucose = st.number_input(
+        "🍬 Fasting Glucose Level",
+        value=100
+    )
+
+    insulin = st.number_input(
+        "💉 Insulin Level",
+        value=15.0
+    )
+
+    triglycerides = st.number_input(
+        "🧪 Triglycerides Level",
+        value=150
+    )
+
+    calories = st.number_input(
+        "🍽 Daily Calorie Intake",
+        value=2000
+    )
+
+    sleep = st.number_input(
+        "😴 Sleep Hours",
+        value=7.0
+    )
+
+    family = st.selectbox(
+        "👨‍👩‍👧 Family History",
+        ["No","Yes"]
+    )
+
+with col2:
+
+    gender = st.selectbox(
+        "⚧ Gender",
+        ["Female","Male"]
+    )
+
+    blood_pressure = st.number_input(
+        "🩸 Blood Pressure",
+        value=120
+    )
+
+    hba1c = st.number_input(
+        "🧬 HbA1c Level",
+        value=5.5
+    )
+
+    cholesterol = st.number_input(
+        "❤️ Cholesterol Level",
+        value=180
+    )
+
+    activity = st.selectbox(
+        "🏃 Physical Activity",
+        ["Low","Medium","High"]
+    )
+
+    sugar = st.number_input(
+        "🍫 Sugar Intake (grams/day)",
+        value=50.0
+    )
+
+    stress = st.slider(
+        "😰 Stress Level",
+        1,
+        10,
+        5
+    )
+
+    waist = st.number_input(
+        "📏 Waist Circumference (cm)",
+        value=90.0
+    )
+
+# ---------------------------------------------------
+# Convert Inputs
+# ---------------------------------------------------
 
 gender = 1 if gender == "Male" else 0
 
 family = 1 if family == "Yes" else 0
 
-# IMPORTANT:
-# Change this mapping if your LabelEncoder mapping is different.
 activity_map = {
-    "High": 0,
-    "Low": 1,
-    "Medium": 2
+    "High":0,
+    "Low":1,
+    "Medium":2
 }
 
 activity = activity_map[activity]
 
+# ---------------------------------------------------
 # Prediction
+# ---------------------------------------------------
 
-if st.button("Predict Diabetes Risk"):
+if st.button("🔍 Predict Diabetes Risk"):
 
     features = np.array([[
         age,
@@ -102,6 +251,62 @@ if st.button("Predict Diabetes Risk"):
 
     prediction = model.predict(features)
 
-    result = target_encoder.inverse_transform(prediction)
+    result = target_encoder.inverse_transform(prediction)[0]
 
-    st.success(f"Predicted Diabetes Risk Category: {result[0]}")
+    st.markdown("---")
+
+    st.subheader("Prediction Result")
+
+    if result == "Low":
+
+        st.success("🟢 LOW DIABETES RISK")
+
+        st.info("""
+### Recommendation
+
+✔ Maintain a healthy lifestyle.
+
+✔ Exercise regularly.
+
+✔ Eat balanced meals.
+
+✔ Get routine health checkups.
+""")
+
+    elif result == "Medium":
+
+        st.warning("🟡 MEDIUM DIABETES RISK")
+
+        st.info("""
+### Recommendation
+
+✔ Reduce sugar intake.
+
+✔ Increase physical activity.
+
+✔ Monitor blood glucose regularly.
+
+✔ Maintain a healthy body weight.
+""")
+
+    else:
+
+        st.error("🔴 HIGH DIABETES RISK")
+
+        st.info("""
+### Recommendation
+
+✔ Consult a healthcare professional.
+
+✔ Monitor blood glucose levels.
+
+✔ Follow a diabetic-friendly diet.
+
+✔ Exercise regularly.
+
+✔ Take prescribed medication if advised.
+""")
+
+st.markdown("---")
+
+st.caption("Developed by **Madiha Khan** | B.Tech AI & ML | SRMCEM")
