@@ -150,24 +150,53 @@ if st.button("🚀 Predict Diabetes Risk"):
     features=scaler.transform(features)
     pred=model.predict(features)
     risk=target_encoder.inverse_transform(pred)[0]
-    st.write("DEBUG Prediction:", risk)
+    st.write("DiaPredict Analysis:", risk)
 
     st.markdown("---")
 
     if risk == "Low Risk":
         st.success("🟢 LOW RISK")
         st.progress(30)
-        st.info("Maintain your healthy lifestyle, exercise regularly, and continue routine checkups.")
+        st.info("### 🌿 Great News!
+Your current health profile indicates a *low risk of diabetes*.
+
+*To stay healthy:*
+- 🥗 Continue eating a balanced and nutritious diet.
+- 🏃 Stay physically active for at least *30 minutes daily*.
+- 💧 Drink plenty of water and maintain a healthy weight.
+- 🩺 Schedule routine health checkups to monitor your well-being.
+
+*Remember:* Prevention is always better than treatment. Keep up your healthy lifestyle!")
 
     elif risk == "Prediabetes":
         st.warning("🟡 PREDIABETES")
         st.progress(60)
-        st.info("Reduce sugar intake, improve physical activity, and monitor your glucose regularly.")
+        st.info("### ⚠️ You're at Risk
+Your health profile suggests you may be in the *prediabetes stage*, where blood sugar levels are higher than normal but not yet diabetic.
+
+*Recommended Actions:*
+- 🍎 Reduce sugary foods and refined carbohydrates.
+- 🚶 Exercise for *150 minutes per week*.
+- ⚖️ Maintain a healthy body weight.
+- 🩸 Monitor your blood glucose levels regularly.
+- 👨‍⚕️ Consider consulting a healthcare professional for personalized guidance.
+
+*Early lifestyle changes can significantly reduce the risk of developing Type 2 Diabetes.*")
 
     elif risk == "High Risk":
         st.error("🔴 HIGH RISK")
         st.progress(90)
-        st.info("Consult a healthcare professional for further evaluation and follow medical advice.")
+        st.info("### 🚨 Immediate Attention Recommended
+Your health profile indicates a *high risk of diabetes*.
+
+*Please consider the following:*
+- 🏥 Consult a qualified healthcare professional as soon as possible.
+- 🩸 Get diagnostic tests such as *Fasting Blood Sugar (FBS)* and *HbA1c*.
+- 🥗 Begin adopting a diabetes-friendly diet under medical guidance.
+- 🚶 Incorporate regular physical activity as advised by your doctor.
+- 💊 Follow prescribed medications or treatment plans if recommended.
+
+*This assessment is AI-generated and should not replace professional medical diagnosis.*")
 
 st.markdown("---")
 st.caption("🌌 Galaxy Theme • Developed by Madiha Khan")
