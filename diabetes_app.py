@@ -76,7 +76,7 @@ with open("target_encoder.pkl","rb") as f:
 st.sidebar.title("🩺 DiaPredict")
 st.sidebar.markdown("### AI Powered Health Screening")
 st.sidebar.markdown("---")
-st.sidebar.write("""✨ WHY CHOOSE DIAPREDICT
+st.sidebar.info("""✨ WHY CHOOSE DIAPREDICT
 
 ⚡ Instant Prediction
 
