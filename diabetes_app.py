@@ -77,7 +77,7 @@ st.sidebar.title("🩺 DiaPredict")
 st.sidebar.markdown("### AI Powered Health Screening")
 st.sidebar.markdown("---")
 st.sidebar.info("""
-**Developer**
+**OUR DEVELOPERS**
 
 Madiha Khan
 
