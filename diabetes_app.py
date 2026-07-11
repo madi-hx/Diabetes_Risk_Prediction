@@ -87,7 +87,7 @@ Anushka Srivastava
 
 Prakhar Dwivedi
 
-B.Tech AI & ML
+         -B.Tech AI & ML
 """)
 
 st.markdown("<div class='glass'>",unsafe_allow_html=True)
