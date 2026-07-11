@@ -5,7 +5,7 @@ import numpy as np
 
 st.set_page_config(
     page_title="Galaxy Diabetes AI",
-    page_icon="🩺",
+    page_icon="",
     layout="wide"
 )
 
