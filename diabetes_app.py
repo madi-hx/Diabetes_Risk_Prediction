@@ -157,7 +157,7 @@ if st.button("🚀 Predict Diabetes Risk"):
     if risk == "Low Risk":
         st.success("🟢 LOW RISK")
         st.progress(30)
-        st.info("### 🌿 Great News!
+        st.info("""### 🌿 Great News!
 Your current health profile indicates a *low risk of diabetes*.
 
 *To stay healthy:*
@@ -166,12 +166,12 @@ Your current health profile indicates a *low risk of diabetes*.
 - 💧 Drink plenty of water and maintain a healthy weight.
 - 🩺 Schedule routine health checkups to monitor your well-being.
 
-*Remember:* Prevention is always better than treatment. Keep up your healthy lifestyle!")
+*Remember:* Prevention is always better than treatment. Keep up your healthy lifestyle!""")
 
     elif risk == "Prediabetes":
         st.warning("🟡 PREDIABETES")
         st.progress(60)
-        st.info("### ⚠️ You're at Risk
+        st.info("""### ⚠️ You're at Risk
 Your health profile suggests you may be in the *prediabetes stage*, where blood sugar levels are higher than normal but not yet diabetic.
 
 *Recommended Actions:*
@@ -181,12 +181,12 @@ Your health profile suggests you may be in the *prediabetes stage*, where blood 
 - 🩸 Monitor your blood glucose levels regularly.
 - 👨‍⚕️ Consider consulting a healthcare professional for personalized guidance.
 
-*Early lifestyle changes can significantly reduce the risk of developing Type 2 Diabetes.*")
+*Early lifestyle changes can significantly reduce the risk of developing Type 2 Diabetes.*""")
 
     elif risk == "High Risk":
         st.error("🔴 HIGH RISK")
         st.progress(90)
-        st.info("### 🚨 Immediate Attention Recommended
+        st.info("""### 🚨 Immediate Attention Recommended
 Your health profile indicates a *high risk of diabetes*.
 
 *Please consider the following:*
@@ -196,7 +196,7 @@ Your health profile indicates a *high risk of diabetes*.
 - 🚶 Incorporate regular physical activity as advised by your doctor.
 - 💊 Follow prescribed medications or treatment plans if recommended.
 
-*This assessment is AI-generated and should not replace professional medical diagnosis.*")
+*This assessment is AI-generated and should not replace professional medical diagnosis.*""")
 
 st.markdown("---")
 st.caption("🌌 Galaxy Theme • Developed by Madiha Khan")
