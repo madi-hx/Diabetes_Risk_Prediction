@@ -77,7 +77,7 @@ st.sidebar.title("🩺 DiaPredict")
 st.sidebar.markdown("### AI Powered Health Screening")
 st.sidebar.markdown("---")
 st.sidebar.info("""
-**OUR DEVELOPERS**
+***OUR DEVELOPERS***
 
 Madiha Khan
 
@@ -87,12 +87,12 @@ Anushka Srivastava
 
 Prakhar Dwivedi
 
-         -B.Tech AI & ML
+         B.Tech AI & ML
 """)
 
-st.markdown("<div class='glass'>",unsafe_allow_html=True)
-st.title("🩺 Galaxy Diabetes Risk Prediction")
-st.write("Enter patient information below to predict diabetes risk.")
+st.markdown("""<div class="glass" style="text-align:center;">""", unsafe_allow_html=True)
+st.title("🩺 Diabetes Risk Prediction")
+st.write("Your journey toward proactive health starts here. Complete the assessment for an intelligent diabetes risk evaluation")
 st.markdown("</div>",unsafe_allow_html=True)
 
 col1,col2=st.columns(2)
