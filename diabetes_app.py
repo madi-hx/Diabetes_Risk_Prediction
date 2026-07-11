@@ -130,7 +130,7 @@ if st.button("🚀 Predict Diabetes Risk"):
 
     st.markdown("---")
 
-    if risk == "Low Risk":
+if risk == "Low Risk":
     st.success("🟢 LOW RISK")
     st.progress(30)
     st.info("Maintain your healthy lifestyle, exercise regularly, and continue routine checkups.")
