@@ -80,6 +80,9 @@ st.sidebar.info("""
 **Developer**
 
 Madiha Khan
+Priyanshu Tiwari
+Anushka Srivastava
+Prakhar Dwivedi
 
 B.Tech AI & ML
 """)
