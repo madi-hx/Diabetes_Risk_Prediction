@@ -4,8 +4,8 @@ import pickle
 import numpy as np
 
 st.set_page_config(
-    page_title="Galaxy Diabetes AI",
-    page_icon="",
+    page_title="Diabetes Risk Prediction",
+    page_icon="🩺",
     layout="wide"
 )
 
@@ -73,7 +73,7 @@ with open("scaler.pkl","rb") as f:
 with open("target_encoder.pkl","rb") as f:
     target_encoder=pickle.load(f)
 
-st.sidebar.title("🌌 Galaxy Diabetes AI")
+st.sidebar.title("🩺 DiaPredict")
 st.sidebar.markdown("### AI Powered Health Screening")
 st.sidebar.markdown("---")
 st.sidebar.info("""
