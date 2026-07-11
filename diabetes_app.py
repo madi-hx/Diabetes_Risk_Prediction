@@ -106,14 +106,14 @@ with col2:
     blood_pressure=st.number_input("🩸 Blood Pressure",value=120)
     hba1c=st.number_input("🧬 HbA1c",value=5.5)
     cholesterol=st.number_input("❤️ Cholesterol",value=180)
-    activity=st.selectbox("🏃 Physical Activity",["Low","Medium","High"])
+    activity=st.selectbox("🏃 Physical Activity",["Low","Moderate","High"])
     sugar=st.number_input("🍫 Sugar Intake",value=50.0)
     stress=st.slider("😰 Stress Level",1,10,5)
     waist=st.number_input("📏 Waist Circumference",value=90.0)
 
 gender=1 if gender=="Male" else 0
 family=1 if family=="Yes" else 0
-activity_map={"High":0,"Low":1,"Medium":2}
+activity_map={"High":0,"Low":1,"Moderate":2}
 activity=activity_map[activity]
 
 if st.button("🚀 Predict Diabetes Risk"):
@@ -126,23 +126,24 @@ if st.button("🚀 Predict Diabetes Risk"):
     features=scaler.transform(features)
     pred=model.predict(features)
     risk=target_encoder.inverse_transform(pred)[0]
+    st.write("DEBUG Prediction:", risk)
 
     st.markdown("---")
 
-    if risk=="Low":
-        st.success("🟢 LOW RISK")
-        st.progress(30)
-        st.info("Maintain your healthy lifestyle, exercise regularly, and continue routine checkups.")
+    if risk == "Low Risk":
+    st.success("🟢 LOW RISK")
+    st.progress(30)
+    st.info("Maintain your healthy lifestyle, exercise regularly, and continue routine checkups.")
 
-    elif risk=="Medium":
-        st.warning("🟡 MEDIUM RISK")
-        st.progress(60)
-        st.info("Reduce sugar intake, improve physical activity, and monitor your glucose regularly.")
+elif risk == "Prediabetes":
+    st.warning("🟡 PREDIABETES")
+    st.progress(60)
+    st.info("Reduce sugar intake, improve physical activity, and monitor your glucose regularly.")
 
-    else:
-        st.error("🔴 HIGH RISK")
-        st.progress(90)
-        st.info("Consult a healthcare professional for further evaluation and follow medical advice.")
+elif risk == "High Risk":
+    st.error("🔴 HIGH RISK")
+    st.progress(90)
+    st.info("Consult a healthcare professional for further evaluation and follow medical advice.")
 
 st.markdown("---")
 st.caption("🌌 Galaxy Theme • Developed by Madiha Khan")
