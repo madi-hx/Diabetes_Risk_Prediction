@@ -76,6 +76,24 @@ with open("target_encoder.pkl","rb") as f:
 st.sidebar.title("🩺 DiaPredict")
 st.sidebar.markdown("### AI Powered Health Screening")
 st.sidebar.markdown("---")
+st.sidebar.success("✨ WHY CHOOSE DIAPREDICT
+
+⚡ Instant Prediction
+
+Get diabetes risk analysis in seconds.
+
+🧠 AI-Powered Analysis
+
+Advanced machine learning for reliable insights.
+
+🔒 Privacy First
+
+Your health information is processed securely.
+
+📈 Early Detection
+
+Supports timely awareness and preventive care.")
+st.sidebar.markdown("---")
 st.sidebar.info("""
 ***OUR DEVELOPERS***
 
