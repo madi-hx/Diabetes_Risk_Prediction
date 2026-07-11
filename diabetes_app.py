@@ -140,7 +140,7 @@ family=1 if family=="Yes" else 0
 activity_map={"High":0,"Low":1,"Moderate":2}
 activity=activity_map[activity]
 
-if st.button("🚀 Predict Diabetes Risk"):
+if st.button("🚀 Show Diabetes Risk"):
     features=np.array([[
         age,gender,bmi,blood_pressure,fasting_glucose,
         insulin,hba1c,cholesterol,triglycerides,
@@ -150,7 +150,7 @@ if st.button("🚀 Predict Diabetes Risk"):
     features=scaler.transform(features)
     pred=model.predict(features)
     risk=target_encoder.inverse_transform(pred)[0]
-    st.write("DiaPredict Analysis:", risk)
+    st.write("DiaPredict  Analysis:", risk)
 
     st.markdown("---")
 
